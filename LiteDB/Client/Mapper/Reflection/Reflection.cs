@@ -32,7 +32,6 @@ namespace LiteDB
         /// <summary>
         /// Create a new instance from a Type
         /// </summary>
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Runtime object construction requires generated contracts under NativeAOT.")]
         public static object CreateInstance(Type type)
         {
             try
@@ -150,21 +149,18 @@ namespace LiteDB
             return type.GetGenericArguments()[0];
         }
 
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Constructing generic collection types at runtime is not available under NativeAOT.")]
         public static Type GetGenericListOfType(Type type)
         {
             var listType = typeof(List<>);
             return listType.MakeGenericType(type);
         }
 
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Constructing generic collection types at runtime is not available under NativeAOT.")]
         public static Type GetGenericSetOfType(Type type)
         {
             var setType = typeof(HashSet<>);
             return setType.MakeGenericType(type);
         }
 
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Constructing generic collection types at runtime is not available under NativeAOT.")]
         public static Type GetGenericDictionaryOfType(Type k, Type v)
         {
             var dictionaryType = typeof(Dictionary<,>);

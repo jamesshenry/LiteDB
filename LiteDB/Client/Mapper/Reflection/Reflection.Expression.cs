@@ -13,7 +13,6 @@ namespace LiteDB
     /// </summary>
     internal partial class Reflection
     {
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Compiled expression accessors require generated contracts under NativeAOT.")]
         public static CreateObject CreateClass(Type type)
         {
             var pDoc = Expression.Parameter(typeof(BsonDocument), "_doc");
@@ -21,7 +20,6 @@ namespace LiteDB
             return Expression.Lambda<CreateObject>(Expression.New(type), pDoc).Compile();
         }
 
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Compiled expression accessors require generated contracts under NativeAOT.")]
         public static CreateObject CreateStruct(Type type)
         {
             var pDoc = Expression.Parameter(typeof(BsonDocument), "_doc");

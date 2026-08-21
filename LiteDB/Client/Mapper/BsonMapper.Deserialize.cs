@@ -273,7 +273,6 @@ namespace LiteDB
             return arr;
         }
 
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Collection materialization requires a generated adapter under NativeAOT.")]
         private object DeserializeList(Type type, BsonArray value)
         {
             var itemType = Reflection.GetListItemType(type);
@@ -299,7 +298,6 @@ namespace LiteDB
             return enumerable;
         }
 
-        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Dictionary deserialization uses reflection-based key conversion; use a generated dictionary adapter under NativeAOT.")]
         private void DeserializeDictionary(Type keyType, Type valueType, IDictionary dict, BsonDocument value)
         {
             foreach (KeyValuePair<string, BsonValue> element in value.GetElements())
@@ -345,8 +343,6 @@ namespace LiteDB
             }
         }
 
-        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Anonymous type deserialization is not supported under NativeAOT; use a named DTO.")]
-        [System.Diagnostics.CodeAnalysis.RequiresDynamicCode("Anonymous type deserialization is not supported under NativeAOT; use a named DTO.")]
         private object DeserializeAnonymousType(Type type, BsonDocument value)
         {
             var args = new List<object>();
