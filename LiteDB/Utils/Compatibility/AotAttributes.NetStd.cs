@@ -1,4 +1,3 @@
-#if NETSTANDARD2_0
 using System;
 
 namespace System.Diagnostics.CodeAnalysis
@@ -23,4 +22,3 @@ namespace System.Diagnostics.CodeAnalysis
         public string Justification { get; set; }
     }
 }
-#endif
