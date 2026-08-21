@@ -115,6 +115,14 @@ namespace LiteDB
             }
 
             // test if has a custom type implementation
+            if (TryGetGeneratedValueContract(type, out _, out var generated))
+            {
+                return generated(this, value);
+            }
+            if (TryGetGeneratedCollectionContract(type, out _, out var collectionDeserialize))
+            {
+                return collectionDeserialize(this, value.AsArray);
+            }
             if (_customDeserializer.TryGetValue(type, out Func<BsonValue, object> custom))
             {
                 return custom(value);
@@ -220,8 +228,10 @@ namespace LiteDB
                     ?? GetTypeCtor(entity) 
                     ?? ((BsonDocument _) => Reflection.CreateInstance(entity.ForType));
 
-                object instance = _typeInstantiator(type) 
-                    ?? entity.CreateInstance(doc);
+                var instance = _typeInstantiator(type) ??
+                    (entity.CreateInstanceWithMapper != null
+                        ? entity.CreateInstanceWithMapper(this, doc)
+                        : entity.CreateInstance(doc));
 
                 if (instance is IDictionary dict)
                 {
