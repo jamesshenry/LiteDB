@@ -187,6 +187,7 @@ public partial class BsonMapper
     /// - Look for parameterless ctor
     /// - Look for first contructor with parameter and use BsonDocument to send RawValue
     /// </summary>
+    [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Constructor discovery requires generated constructor contracts under NativeAOT.")]
     protected virtual CreateObject GetTypeCtor(EntityMapper mapper)
     {
         Type type = mapper.ForType;

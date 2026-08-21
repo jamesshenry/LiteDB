@@ -56,6 +56,7 @@ namespace LiteDB
 
         public string GetName(Type type) => type.FullName + ", " + type.GetTypeInfo().Assembly.GetName().Name;
 
+        [System.Diagnostics.CodeAnalysis.RequiresUnreferencedCode("Type.GetType cannot resolve types under NativeAOT; use a generated discriminator registry.")]
         public Type GetType(string name)
         {
             var type = Type.GetType(name);
